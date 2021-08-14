@@ -28,7 +28,7 @@ resource "helm_release" "this" {
   namespace  = var.k8s_namespace
   repository = "https://kubernetes-sigs.github.io/aws-ebs-csi-driver"
   chart      = "aws-ebs-csi-driver"
-  version    = var.chart_version_aws_ebs_csi_driver # 2.1.0
+  version    = var.chart_version_aws_ebs_csi_driver
 
   recreate_pods     = var.helm_recreate_pods
   atomic            = var.helm_atomic_creation
@@ -49,10 +49,10 @@ resource "helm_release" "this" {
 
   values = [
     templatefile("${path.module}/helm-values/aws-ebs-csi-driver.yml.tpl", {
-      aws_region     = data.aws_region.current.name
-      eks_cluster_id = var.eks_cluster_id
-      k8s_sa_name    = var.k8s_sa_name
-      iam_role_arn   = var.iam_role_arn
+      aws_region   = data.aws_region.current.name
+      cluster_name = var.cluster_name
+      k8s_sa_name  = var.k8s_sa_name
+      iam_role_arn = var.iam_role_arn
     })
   ]
 

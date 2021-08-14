@@ -10,7 +10,7 @@ Example:
 ```hcl
 module "aws_ebs_csi_driver_resources" {
   source                           = "github.com/andreswebs/terraform-aws-eks-ebs-csi-driver//modules/resources"
-  k8s_namespace                    = "kube-system"
+  cluster_name                     = var.eks_cluster_id
   iam_role_arn                     = var.aws_ebs_csi_driver_iam_role_arn
   chart_version_aws_ebs_csi_driver = var.chart_version_aws_ebs_csi_driver
 }
@@ -23,6 +23,7 @@ module "aws_ebs_csi_driver_resources" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_chart_version_aws_ebs_csi_driver"></a> [chart\_version\_aws\_ebs\_csi\_driver](#input\_chart\_version\_aws\_ebs\_csi\_driver) | Chart version | `string` | `null` | no |
+| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Cluster name | `string` | n/a | yes |
 | <a name="input_helm_atomic_creation"></a> [helm\_atomic\_creation](#input\_helm\_atomic\_creation) | Purge resources on installation failure ? The wait flag will be set automatically if atomic is used | `bool` | `true` | no |
 | <a name="input_helm_cleanup_on_fail"></a> [helm\_cleanup\_on\_fail](#input\_helm\_cleanup\_on\_fail) | Deletion new resources created in this upgrade if the upgrade fails ? | `bool` | `true` | no |
 | <a name="input_helm_create_namespace"></a> [helm\_create\_namespace](#input\_helm\_create\_namespace) | Create the namespace if it does not yet exist ? | `bool` | `true` | no |

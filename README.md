@@ -9,9 +9,10 @@ Example:
 
 ```hcl
 module "aws_ebs_csi_driver" {
-  source                     = "github.com/andreswebs/terraform-aws-eks-ebs-csi-driver"
-  cluster_oidc_provider      = var.eks_cluster_oidc_provider
-  iam_role_name              = "ebs-csi-controller-${var.eks_cluster_id}"
+  source                           = "github.com/andreswebs/terraform-aws-eks-ebs-csi-driver"
+  cluster_name                     = var.eks_cluster_id
+  cluster_oidc_provider            = var.eks_cluster_oidc_provider
+  iam_role_name                    = "ebs-csi-controller-${var.eks_cluster_id}"
   chart_version_aws_ebs_csi_driver = var.chart_version_aws_ebs_csi_driver
 }
 ```
@@ -23,6 +24,7 @@ module "aws_ebs_csi_driver" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_chart_version_aws_ebs_csi_driver"></a> [chart\_version\_aws\_ebs\_csi\_driver](#input\_chart\_version\_aws\_ebs\_csi\_driver) | Chart version | `string` | `null` | no |
+| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Cluster name | `string` | n/a | yes |
 | <a name="input_cluster_oidc_provider"></a> [cluster\_oidc\_provider](#input\_cluster\_oidc\_provider) | OpenID Connect (OIDC) Identity Provider associated with the Kubernetes cluster | `string` | n/a | yes |
 | <a name="input_helm_atomic_creation"></a> [helm\_atomic\_creation](#input\_helm\_atomic\_creation) | Purge resources on installation failure ? The wait flag will be set automatically if atomic is used | `bool` | `true` | no |
 | <a name="input_helm_cleanup_on_fail"></a> [helm\_cleanup\_on\_fail](#input\_helm\_cleanup\_on\_fail) | Deletion new resources created in this upgrade if the upgrade fails ? | `bool` | `true` | no |

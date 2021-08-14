@@ -1,3 +1,8 @@
+variable "cluster_name" {
+  type        = string
+  description = "Cluster name"
+}
+
 variable "k8s_namespace" {
   type        = string
   description = "Kubernetes namespace on which to install Chartmuseum"
