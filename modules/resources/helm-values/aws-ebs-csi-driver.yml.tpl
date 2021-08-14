@@ -6,4 +6,4 @@ controller:
     create: true
     name: ${k8s_sa_name}
     annotations:
-      role: ${iam_role_arn}
+      eks.amazonaws.com/role-arn: ${iam_role_arn}
