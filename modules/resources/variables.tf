@@ -1,24 +1,19 @@
-variable "cluster_oidc_provider" {
-  type        = string
-  description = "OpenID Connect (OIDC) Identity Provider associated with the Kubernetes cluster"
-}
-
 variable "k8s_namespace" {
   type        = string
-  description = "Kubernetes namespace on which to install resources"
+  description = "Kubernetes namespace on which to install Chartmuseum"
   default     = "kube-system"
 }
 
 variable "k8s_sa_name" {
   type        = string
-  description = "Name of the Kubernetes service account for cert-manager"
-  default     = "ebs-csi-controller"
+  description = "Name of the Kubernetes service account used by Chartmuseum"
+  default     = "aws-ebs-csi-controller"
 }
 
-variable "iam_role_name" {
+variable "iam_role_arn" {
   type        = string
-  description = "Name of the IAM role used by the cert-manager Kubernetes service account"
-  default     = "ebs-csi-controller"
+  description = "ARN of the IAM role used by the Kubernetes service account"
+  default     = ""
 }
 
 variable "chart_version_aws_ebs_csi_driver" {
@@ -30,7 +25,7 @@ variable "chart_version_aws_ebs_csi_driver" {
 variable "helm_release_name" {
   type        = string
   description = "Release name"
-  default     = "cert-manager"
+  default     = "aws-ebs-csi-driver"
 }
 
 variable "helm_max_history" {
