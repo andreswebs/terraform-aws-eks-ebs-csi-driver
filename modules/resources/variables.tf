@@ -12,7 +12,7 @@ variable "k8s_namespace" {
 variable "k8s_sa_name" {
   type        = string
   description = "Name of the Kubernetes service account used by Chartmuseum"
-  default     = "aws-ebs-csi-controller"
+  default     = "ebs-csi-controller"
 }
 
 variable "iam_role_arn" {
