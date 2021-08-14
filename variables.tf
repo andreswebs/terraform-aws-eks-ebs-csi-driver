@@ -11,13 +11,13 @@ variable "k8s_namespace" {
 
 variable "k8s_sa_name" {
   type        = string
-  description = "Name of the Kubernetes service account for cert-manager"
+  description = "Name of the Kubernetes service account"
   default     = "ebs-csi-controller"
 }
 
 variable "iam_role_name" {
   type        = string
-  description = "Name of the IAM role used by the cert-manager Kubernetes service account"
+  description = "Name of the IAM role used by Kubernetes service account"
   default     = "ebs-csi-controller"
 }
 
@@ -30,7 +30,7 @@ variable "chart_version_aws_ebs_csi_driver" {
 variable "helm_release_name" {
   type        = string
   description = "Release name"
-  default     = "cert-manager"
+  default     = "aws-ebs-csi-driver"
 }
 
 variable "helm_max_history" {
