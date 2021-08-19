@@ -17,6 +17,7 @@ terraform {
 
 locals {
   iam_role_name = var.iam_role_name == "" ? null : var.iam_role_name
+  kms_key_arn = var.kms_key_arn == "" ? null : var.kms_key_arn
 }
 
 module "assume_role_policy" {
@@ -32,8 +33,17 @@ resource "aws_iam_role" "this" {
   assume_role_policy = module.assume_role_policy.json
 }
 
-resource "aws_iam_role_policy" "this" {
-  name   = "aws-ebs-csi-controller-permissions"
+resource "aws_iam_role_policy" "ebs_permissions" {
+  name   = "ebs-permissions"
   role   = aws_iam_role.this.id
-  policy = file("${path.module}/policies/aws-ebs-csi-controller.json")
+  policy = file("${path.module}/policies/ebs-permissions.json")
+}
+
+resource "aws_iam_role_policy" "kms_permissions" {
+  count = local.kms_key_arn != null ? 1 : 0
+  name   = "kms-permissions"
+  role   = aws_iam_role.this.id
+  policy = templatefile("${path.module}/policies/kms-permissions.json.tpl", {
+    kms_key_arn = local.kms_key_arn
+  })
 }

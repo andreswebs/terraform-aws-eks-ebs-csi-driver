@@ -26,6 +26,12 @@ variable "iam_role_name" {
   default     = "ebs-csi-controller"
 }
 
+variable "kms_key_arn" {
+  type        = string
+  description = "(Optional) ARN of the AWS KMS key used for volume encryption"
+  default     = ""
+}
+
 variable "chart_version_aws_ebs_csi_driver" {
   type        = string
   description = "Chart version"

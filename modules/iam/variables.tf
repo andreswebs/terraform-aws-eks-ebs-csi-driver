@@ -21,3 +21,9 @@ variable "iam_role_name" {
   description = "IAM role name"
   default     = "ebs-csi-controller"
 }
+
+variable "kms_key_arn" {
+  type        = string
+  description = "(Optional) ARN of the AWS KMS key used for volume encryption"
+  default     = ""
+}
